@@ -8,8 +8,9 @@ import { handleIncomingEmail } from "./services/sendgrid";
 import { setupSMSWebhook } from "./routes/smsWebhook";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  const httpServer = createServer(app);
-
+const httpServer = createServer(app);
+  return httpServer;
+}
   // Set up Twilio webhook endpoints
   setupTwilioWebhook(app);
   setupSMSWebhook(app);
