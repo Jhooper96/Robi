@@ -5,6 +5,7 @@ import { messageFilterSchema, messageResponseSchema, messageAssignSchema, messag
 import { analyzeTenant, generateAIResponse } from "./ai/openai";
 import { setupTwilioWebhook, sendSMS } from "./services/twilio";
 import { handleIncomingEmail } from "./services/sendgrid";
+import { setupSMSWebhook } from "./routes/smsWebhook";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
