@@ -12,7 +12,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Set up Twilio webhook endpoints
   setupTwilioWebhook(app);
-  
+  setupSMSWebhook(app);
+
   // Test endpoint for sending SMS messages
   app.post("/api/test-sms", async (req, res) => {
     try {
