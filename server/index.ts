@@ -3,6 +3,7 @@ import path from "path";
 import { registerRoutes } from "./routes";
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+import { setupSMSRoutes } from "./routes";
 
 const app = express();
 app.use(express.json());
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
 
 (async () => {
   const server = await registerRoutes(app);
+setupSMSRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
