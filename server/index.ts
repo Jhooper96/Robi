@@ -1,6 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
 import path from "path";
 import { registerRoutes } from "./routes";
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const app = express();
 app.use(express.json());
