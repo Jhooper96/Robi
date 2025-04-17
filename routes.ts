@@ -14,7 +14,9 @@ const httpServer = createServer(app);
   setupSMSWebhook(app);
 return httpServer;
 }
-  // Test endpoint for sending SMS messages
+ export { registerRoutes };
+
+// Test endpoint for sending SMS messages
   app.post("/api/test-sms", async (req, res) => {
     try {
       const { phoneNumber, message } = req.body;
