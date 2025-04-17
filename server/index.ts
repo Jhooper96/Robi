@@ -3,12 +3,13 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 import path from "path";
-import { registerRoutes } from "./routes/index.js";
-import { setupSMSRoutes } from "./routes/index.js";
+import { registerRoutes, setupSMSRoutes } from "./routes/index.js";
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // Serve static files from the public directory
 app.use(express.static(path.join(process.cwd(), 'public')));
+
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -41,7 +42,7 @@ app.use((req, res, next) => {
 
 (async () => {
   const server = await registerRoutes(app);
-setupSMSRoutes(app);
+  setupSMSRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
@@ -55,8 +56,10 @@ setupSMSRoutes(app);
   // setting up all the other routes so the catch-all route
   // doesn't interfere with the other routes
   if (app.get("env") === "development") {
-    await setupVite(app, server);
+    // You need to define this function or import it
+    // await setupVite(app, server);
   } else {
+    // Production code here
   }
 
   // ALWAYS serve the app on port 5000
@@ -68,6 +71,6 @@ setupSMSRoutes(app);
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
-  console.log(`serving on port ${port}`);
+    console.log(`serving on port ${port}`);
   });
 })();
