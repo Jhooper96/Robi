@@ -410,3 +410,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   return httpServer;
 }
+export function setupSMSRoutes(app: Express) {
+  app.post("/api/sms", async (req, res) => {
+    const { From, Body } = req.body;
+
+    console.log(`📨 Incoming SMS from ${From}: "${Body}"`);
+
+    // Respond back to Twilio to confirm
+    res.status(200).send("SMS received");
+  });
+}
