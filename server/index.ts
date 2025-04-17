@@ -1,8 +1,9 @@
 import express, { type Request, Response, NextFunction } from "express";
-import path from "path";
-import { registerRoutes } from "./routes";
+const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+import path from "path";
+import { registerRoutes } from "./routes";
 import { setupSMSRoutes } from "./routes";
 
 const app = express();
