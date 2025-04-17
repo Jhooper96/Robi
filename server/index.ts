@@ -3,8 +3,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 import path from "path";
-import { registerRoutes } from "./routes";
-import { setupSMSRoutes } from "./routes";
+import { registerRoutes } from "./routes/index.js";
+import { setupSMSRoutes } from "./routes/index.js";
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // Serve static files from the public directory
