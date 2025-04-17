@@ -7,14 +7,15 @@ import { setupTwilioWebhook, sendSMS } from "./services/twilio";
 import { handleIncomingEmail } from "./services/sendgrid";
 import { setupSMSWebhook } from "./routes/smsWebhook";
 
-export async function registerRoutes(app: Express): Promise<Server> {
-const httpServer = createServer(app);
-  // Set up Twilio webhook endpoints
+const registerRoutes = async (app: Express): Promise<Server> => {
+  const httpServer = createServer(app);
   setupTwilioWebhook(app);
   setupSMSWebhook(app);
-return httpServer;
-}
- export { registerRoutes };
+  return httpServer;
+};
+
+export { registerRoutes };
+
 
 // Test endpoint for sending SMS messages
   app.post("/api/test-sms", async (req, res) => {
