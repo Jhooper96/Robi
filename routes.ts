@@ -9,12 +9,11 @@ import { setupSMSWebhook } from "./routes/smsWebhook";
 
 export async function registerRoutes(app: Express): Promise<Server> {
 const httpServer = createServer(app);
-  return httpServer;
-}
   // Set up Twilio webhook endpoints
   setupTwilioWebhook(app);
   setupSMSWebhook(app);
-
+return httpServer;
+}
   // Test endpoint for sending SMS messages
   app.post("/api/test-sms", async (req, res) => {
     try {
